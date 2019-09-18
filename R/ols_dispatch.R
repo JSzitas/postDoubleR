@@ -26,6 +26,7 @@ ols_helper <- function(X,
   if(is.matrix(X)==T){
     X <-  data.frame(X)
   }
+
   names(X) <- paste("X_t_", 1:ncol(X), sep = "")
 
   W_model <- stats::lm( formula = W ~.,
