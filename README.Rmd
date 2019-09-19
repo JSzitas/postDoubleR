@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 # postDoubleR
 
 <!-- badges: start -->
+[![Travis build status](https://travis-ci.org/JSzitas/postDoubleR.svg?branch=master)](https://travis-ci.org/JSzitas/postDoubleR)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![CRAN status](https://www.r-pkg.org/badges/version/postDoubleR)](https://CRAN.R-project.org/package=postDoubleR)
