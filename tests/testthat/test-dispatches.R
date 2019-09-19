@@ -28,13 +28,7 @@ test_that("Glmnet dispatch works", {
                                       lambda.set.Y = 1,
                                       lambda.set.W = 1)
 
-   glmnet_parall <- glmnet_helper( X,
-                                   Y,
-                                   W,
-                                   Z.trans = TRUE,
-                                   cv.steps = 100,
-                                   parallelize = TRUE,
-                                   cores.to.use = 1)
+
 
 
    expect_equal(class(glmnet_non_parall[[1]]), "cv.glmnet")
@@ -49,8 +43,6 @@ test_that("Glmnet dispatch works", {
    expect_equal(class(glmnet_lambda_YW[[1]]), c("elnet", "glmnet"))
    expect_equal(class(glmnet_lambda_YW[[2]]), c("elnet", "glmnet"))
 
-   expect_equal(class(glmnet_parall[[1]]), "cv.glmnet")
-   expect_equal(class(glmnet_parall[[2]]), "cv.glmnet")
 
 })
 
@@ -66,6 +58,9 @@ test_that("Ols dispatch works",{
 
 
 test_that("RF dispatch works",{
+
+   skip_on_cran()
+   skip_on_travis()
 
   rf_disp_base <- rf_helper(X,Y,W,
                        orthog.boost = FALSE,

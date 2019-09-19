@@ -17,6 +17,12 @@ r:
 r_build_args: --no-build-vignettes --no-manual
 r_check_args: --no-build-vignettes --no-manual --timings
 
+script:
+  - |
+    R CMD build .
+    travis_wait 40 R CMD check postDoubleR*tar.gz
+
+
 
 notifications:
   email:

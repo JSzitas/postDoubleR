@@ -1,12 +1,10 @@
-
+set.seed(1071)
+n = 2000; p = 10
+X = matrix(rnorm(n*p), n, p)
+W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
+Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
 
 test_that(" Double ML selection works with glmnet", {
-  set.seed(1071)
-  n = 2000; p = 10
-  X = matrix(rnorm(n*p), n, p)
-  W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
-  Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
-
 
   double_glmnet <- double_ML(X, Y, W, method = c("glmnet"),
                               k.fld = 4,
@@ -28,14 +26,8 @@ test_that(" Double ML selection works with glmnet", {
 
 
 test_that(" Double ML selection works with ols", {
-  set.seed(1071)
-  n = 2000; p = 10
-  X = matrix(rnorm(n*p), n, p)
-  W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
-  Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
 
-
-  double_ols <- double_ML(X, Y, W, method = c("ols"),
+    double_ols <- double_ML(X, Y, W, method = c("ols"),
                                 show.progress = FALSE,
                                 k.fld = 4,
                                 simulations = 50)
@@ -52,23 +44,19 @@ test_that(" Double ML selection works with ols", {
 
 
 
-skip_on_cran()
-test_that(" Double ML selection works with random forests", {
-  set.seed(1071)
-  n = 2000; p = 10
-  X = matrix(rnorm(n*p), n, p)
-  W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
-  Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
 
+test_that(" Double ML selection works with random forests", {
+  skip_on_cran()
+  skip_on_travis()
 
   double_rf <- double_ML(X, Y, W, method = c("randomforest"),
                              k.fld = 2, simulations = 10,
-                             tree.n = 20,
+                             tree.n = 200,
                              show.progress = FALSE,
                              tune = FALSE)
   double_rf_tune <- double_ML(X, Y, W, method = c("randomforest"),
                                   k.fld = 2, simulations = 10,
-                                  tree.n = 20,
+                                  tree.n = 200,
                                   show.progress = FALSE,
                                   tune = TRUE)
 

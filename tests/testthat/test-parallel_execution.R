@@ -1,12 +1,13 @@
+n = 2000; p = 10
+X = matrix(rnorm(n*p), n, p)
+W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
+Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
 
-skip_on_cran()
+
 test_that("Post double selection works with glmnet in parallel", {
-  set.seed(1071)
-  n = 2000; p = 10
-  X = matrix(rnorm(n*p), n, p)
-  W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
-  Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
 
+  skip_on_cran()
+  skip_on_travis()
 
   double_lasso <- double_ML(X, Y, W, method = c("glmnet"),
                                 k.fld = 4, simulations = 50,
@@ -26,12 +27,9 @@ test_that("Post double selection works with glmnet in parallel", {
 
 
 test_that("Post double selection works with glmnet in parallel(with specified core.n", {
-  set.seed(1071)
-  n = 2000; p = 10
-  X = matrix(rnorm(n*p), n, p)
-  W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
-  Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
 
+  skip_on_cran()
+  skip_on_travis()
 
   double_lasso <- double_ML(X, Y, W, method = c("glmnet"),
                                 k.fld = 4, simulations = 50,
@@ -51,13 +49,9 @@ test_that("Post double selection works with glmnet in parallel(with specified co
 })
 
 test_that("Post double selection works with glmnet in parallel(with specified core.n", {
-  set.seed(1071)
 
-  n = 2000; p = 10
-  X = matrix(rnorm(n*p), n, p)
-  W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
-  Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
-
+  skip_on_cran()
+  skip_on_travis()
 
   double_lasso <- double_ML(X, Y, W, method = c("glmnet"),
                                 k.fld = 4, simulations = 10,

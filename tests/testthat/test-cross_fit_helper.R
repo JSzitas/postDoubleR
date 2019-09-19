@@ -80,9 +80,11 @@ test_that("Cross fitting works with custom methods", {
 })
 
 
-skip_on_cran()
+
 test_that("Cross fitting works with rf", {
 
+  skip_on_cran()
+  skip_on_travis()
   cross_rf <- fit_cross(Y_def = Y,
                         X_def = X,
                         W_def = W,

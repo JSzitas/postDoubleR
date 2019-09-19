@@ -1,6 +1,6 @@
 Package: postDoubleR
 Title: Post Double Selection Using Cross Fitting and Double Machine Learning
-Version: 1.4.6
+Version: 1.4.8
 Authors@R: 
     person(given = "Juraj",
            family = "Szitás",
@@ -25,6 +25,7 @@ Imports:
     grf,
     neuralnet,
     progress,
+    ggplot2,
     stats,
     parallel,
     doParallel
