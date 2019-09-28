@@ -14,7 +14,7 @@
 #' @import grf
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   n = 2000; p = 10
 #'   X = matrix(rnorm(n*p), n, p)
 #'   W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
@@ -22,8 +22,7 @@
 #'
 #'
 #'
-#' rf_helper(X = X, Y = Y, W = W,tree.n = 1000)
-#' rf_helper(X = X, Y = Y, W = Z, orthog.boost = T, tune = T)
+#' rf_helper( X = X, Y = Y, W = W, tree.n = 10)
 #' }
 #'
 

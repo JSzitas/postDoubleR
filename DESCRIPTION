@@ -1,14 +1,16 @@
 Package: postDoubleR
-Title: Post Double Selection Using Cross Fitting and Double Machine Learning
-Version: 1.4.8
+Title: Post Double Selection with Double Machine Learning
+Version: 1.4.11
 Authors@R: 
     person(given = "Juraj",
            family = "Szitás",
            role = c("aut", "cre"),
            email = "szitas.juraj13@gmail.com")
 BugReports: https://github.com/JSzitas/postDoubleR/issues          
-Description: Implements Post double selection as in Chernozhukov et al.(2017a) <https://doi.org/10.1111/ectj.12097>
-             for various models, using several backends. Allows the user flexibility
+Description: Implements post double selection using double machine learning,
+             see Chernozhukov, Chetverikov, Demirer, Duflo,
+             Hansen, Newey, Robins (2017) <doi:10.1111/ectj.12097>, 
+             for various models, using several back ends. Allows the user flexibility
              in specifying their own methods for estimation.  
 License: GPL-3
 Suggests: 
@@ -29,4 +31,4 @@ Imports:
     stats,
     parallel,
     doParallel
-VignetteBuilder: knitr
+

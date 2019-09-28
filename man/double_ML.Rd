@@ -41,19 +41,17 @@ Provides a convenient function to calculate the double ML estimated debiased tre
 Custom functions are currently implemented through a function called custom_generator. For these custom functions, refer to that function and usage examples.
 }
 \examples{
-\dontrun{
+
   n = 2000; p = 10
   X = matrix(rnorm(n*p), n, p)
   W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
   Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
 
-double_select(X, Y, W, method = c("lasso"),
-              k.fld = 4, simulations = 1000,
-              cv.steps = 50, Z.trans = F)
-double_select(X, Y, W, method = c("randomforest"),
-              k.fld = 2, simulations = 100,
-              cv.steps = 50, Z.trans = F,
-              num.trees = 1000, clustered = T)
-}
+double_ML(X, Y, W, method = "glmnet",
+              k.fld = 2, simulations = 5,
+              lambda.set.Y = 1,
+              lambda.set.W = 1,
+               Z.trans = F)
+
 
 }

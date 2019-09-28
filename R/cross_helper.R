@@ -8,17 +8,36 @@
 #' @param use The method to use when calculating the out of fold prediction (propagates from method).
 #' @export
 #' @importFrom stats predict
-#' @import grf
-#' @import glmnet
 #' @examples
 #'
-#' \dontrun{
-#'  cross_fit_helper( model_W = W_fit_model,
-#'                    model_Y = Y_fit_model,
-#'                    folds_to_fit = other_folds,
-#'                    use = "glmnet")
 #'
-#' }
+#' n = 1000
+#' p = 10
+#' X = matrix(rnorm(n*p),n,p)
+#' W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
+#' Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
+#'
+#' fit_on <- sample(1:1000, size = 333)
+#' pred_on_1 <- sample(c(1:1000)[-fit_on], size = 333)
+#' pred_on_2 <- c(1:1000)[-c(fit_on,pred_on_1)]
+#' models <- ols_helper( X = X[fit_on,],
+#'                       Y = Y[fit_on],
+#'                       W = W[fit_on] )
+#'
+#' folds_fit <- list()
+#' folds_fit[[1]] <- data.frame(cbind(pred_on_1, X[pred_on_1,], W[pred_on_1], Y[pred_on_1]))
+#' folds_fit[[2]] <- data.frame(cbind(pred_on_2, X[pred_on_2,], W[pred_on_2], Y[pred_on_2]))
+#'
+#' for(i in 1:length(folds_fit)){
+#'   names( folds_fit[[i]] ) <- c("sample_id","Y_t", paste("X_t_", 1:ncol(X), sep = ""), "W_t")
+#'   }
+#'
+#' cross_fit_helper( model_W = models[[1]],
+#'                   model_Y = models[[2]],
+#'                   folds_to_fit = folds_fit,
+#'                   use = "ols")
+#'
+#'
 
 
 

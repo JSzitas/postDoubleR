@@ -28,7 +28,7 @@ This functions checks the input to the double_select function for compliance wit
 The function will throw a warning if it is disabled ( the input is not checked) or stop the processing if the input is checked, but incorrect. Disables checking for custom functions by default.
 }
 \examples{
-\dontrun{
+
   n = 2000; p = 10
   X = matrix(rnorm(n*p), n, p)
   W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
@@ -36,6 +36,6 @@ The function will throw a warning if it is disabled ( the input is not checked) 
 
 input_checker(X_matrix = X, Y_vector = Y, W_vector = W,
 specify.custom = NULL, test.inputs = TRUE)
-}
+
 
 }

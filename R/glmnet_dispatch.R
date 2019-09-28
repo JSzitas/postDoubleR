@@ -18,17 +18,15 @@
 #' @export
 #' @examples
 #'
-#' \dontrun{
+#'
 #'   n = 2000; p = 10
 #'   X = matrix(rnorm(n*p), n, p)
 #'   W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
 #'   Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
 #'
-#' glmnet_helper(X = X, Y = Y, W = W, cv.steps = 50)
-#' glmnet_helper(X = X, Y = Y, W = W, Z.trans = F)
-#' glmnet_helper(X = X, Y = Y, W = W, lambda.set.W = 0.7)
+#' glmnet_helper(X = X, Y = Y, W = W, lambda.set.W = 0.7, lambda.set.Y = 0.5)
 #'
-#' }
+#'
 #'
 #'
 

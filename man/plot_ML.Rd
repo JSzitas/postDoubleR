@@ -15,6 +15,9 @@ plot_ML(x, coloured.same = TRUE, palette = NULL, ...)
 
 \item{...}{Additional arguments (currently ignored).}
 }
+\value{
+Nothing - as a side effect produces a plot.
+}
 \description{
 A function to plot the estimated treatment effects.
 }
@@ -25,18 +28,22 @@ If you supply a palette, the colour will be used in the order in which they are 
 Palette lengths longer than the number of plots will be ignored.
 }
 \examples{
-\dontrun{
+
+  n = 2000; p = 10
+  X = matrix(rnorm(n*p), n, p)
+  W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
+  Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
 
     ols_example <- double_ML(X, Y, W, method = c("ols"),
                              show.progress = FALSE,
-                             k.fld = 4,
-                             simulations = 50)
+                             k.fld = 2,
+                             simulations = 10)
 
    plot_ML(ols_example)
 
 
 
 
-}
+
 
 }

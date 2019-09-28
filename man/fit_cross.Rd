@@ -32,7 +32,6 @@ This only implements the k-fold crossfitting, not the n.repeat simulation - if y
 }
 \examples{
 
-\dontrun{
 
   n = 2000; p = 10
   X = matrix(rnorm(n*p), n, p)
@@ -40,9 +39,9 @@ This only implements the k-fold crossfitting, not the n.repeat simulation - if y
   Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
 
 
-fit_cross(Y_def = Y, X_def = X, W_def = W, data.size = 2000, fun.call = lasso_helper(X,Y,W),
-k.folds = 3)
-}
+fit_cross(Y_def = Y, X_def = X, W_def = W, data.size = 2000, fun.call = glmnet_helper(X,Y,W),
+k.folds = 3, method_used = "glmnet")
+
 
 
 }

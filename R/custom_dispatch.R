@@ -11,7 +11,7 @@
 #' @export
 #' @examples
 #'
-#' \dontrun{
+#'
 #'  n = 2000; p = 10
 #'  X = matrix(rnorm(n*p), n, p)
 #'  W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
@@ -40,7 +40,7 @@
 #'                              glm(W~.,family = "gaussian",data = as.data.frame(cbind(X,Y)))
 #'                              )
 #'               )
-#' }
+#'
 #'
 
 

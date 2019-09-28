@@ -25,7 +25,7 @@ Generates custom methods for use in post-double selection based on user specifie
 }
 \examples{
 
-\dontrun{
+
  n = 2000; p = 10
  X = matrix(rnorm(n*p), n, p)
  W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
@@ -54,6 +54,6 @@ W_model <- glm(W~.,family = binomial,data = as.data.frame(cbind(X,W)))
                              glm(W~.,family = "gaussian",data = as.data.frame(cbind(X,Y)))
                              )
               )
-}
+
 
 }

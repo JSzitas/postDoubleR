@@ -32,7 +32,7 @@ Helper function that dispatches to random forest (grf) for the post-double estim
 If you need to use something that is not a default argument here, please refer to custom_generator. Not using honesty is heavily advised, though, as that could lead to a very high splitting, and the honesty is used for essentialy the same reason as crossfitting.
 }
 \examples{
-\dontrun{
+\donttest{
   n = 2000; p = 10
   X = matrix(rnorm(n*p), n, p)
   W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
@@ -40,8 +40,7 @@ If you need to use something that is not a default argument here, please refer t
 
 
 
-rf_helper(X = X, Y = Y, W = W,tree.n = 1000)
-rf_helper(X = X, Y = Y, W = Z, orthog.boost = T, tune = T)
+rf_helper( X = X, Y = Y, W = W, tree.n = 100)
 }
 
 }

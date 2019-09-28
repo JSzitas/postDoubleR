@@ -35,18 +35,20 @@ the formula or data arguments of neuralnet will be ignored and rewritted with in
 The function will print a warning if this happens.
 }
 \examples{
-\dontrun{
-  n = 2000; p = 10
+\donttest{
+  n = 2000; p = 3
   X = matrix(rnorm(n*p), n, p)
   W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
-  Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
+  Y = rbinom(n, 1, 0.2 + 0.2 * (X[,2] > 0) + W * 0.1)
+
+# note that this neural network can fail to converge
 
  nn_helper( X,
             Y,
             W,
             neural.net.W = list( act.fct = "logistic" ),
-            neural.net.Y = list( act.fc = "tanh" ))
-
+            neural.net.Y = list( act.fc = "logistic" ))
 }
+
 
 }
