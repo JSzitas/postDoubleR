@@ -6,6 +6,7 @@
 #' @param model_Y The model used to produce the estimates of Y_hat
 #' @param folds_to_fit The split folds for which the calculations are being run.
 #' @param use The method to use when calculating the out of fold prediction (propagates from method).
+#' @return A list with four elements: The mean estimate of \eqn{\theta}, the standard error of the mean estimate, the associated  moment conditions, and the estimated heterogenous effects for the single batch of a single run of the simulation.
 #' @export
 #' @importFrom stats predict
 #' @examples

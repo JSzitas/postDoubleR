@@ -23,7 +23,7 @@
 ols_helper <- function(X,
                        Y,
                        W ){
-  if(is.matrix(X)==T){
+  if(is.matrix(X)==TRUE){
     X <-  data.frame(X)
   }
 

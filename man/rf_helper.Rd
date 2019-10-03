@@ -4,7 +4,7 @@
 \alias{rf_helper}
 \title{Helper function(randomforest).}
 \usage{
-rf_helper(X, Y, W, orthog.boost = F, tree.n = 2000, tune = T,
+rf_helper(X, Y, W, orthog.boost = FALSE, tree.n = 2000, tune = T,
   clustered = NULL)
 }
 \arguments{
@@ -40,7 +40,7 @@ If you need to use something that is not a default argument here, please refer t
 
 
 
-rf_helper( X = X, Y = Y, W = W, tree.n = 100)
+rf_helper( X = X, Y = Y, W = W, tree.n = 10)
 }
 
 }

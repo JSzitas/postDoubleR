@@ -22,7 +22,7 @@ fit_cross(Y_def, X_def, W_def, data.size, fun.call, k.folds, method_used)
 \item{method_used}{The method to used when applying predict trough a helper function (do not worry about this!).}
 }
 \value{
-A list with two elements: The sorted effects estimated for the data, of same size as Y, and a mean estimated effect \eqn{\theta}
+A list with four elements: The mean estimate of \eqn{\theta}, the standard error of the mean estimate, the associated  moment conditions, and the estimated heterogenous effects for a combined estimate from a simulation run.
 }
 \description{
 Implements k-fold cross-fitting with the supplied method, is a helper function that the user should not need.

@@ -8,7 +8,7 @@
 #' @param fun.call Designates the function to use for cross-fitting.
 #' @param k.folds The number of k-folds for daataset splitting, defaults to 3.
 #' @param method_used The method to used when applying predict trough a helper function (do not worry about this!).
-#' @return A list with two elements: The sorted effects estimated for the data, of same size as Y, and a mean estimated effect \eqn{\theta}
+#' @return A list with four elements: The mean estimate of \eqn{\theta}, the standard error of the mean estimate, the associated  moment conditions, and the estimated heterogenous effects for a combined estimate from a simulation run.
 #' @export
 #' @details This only implements the k-fold crossfitting, not the n.repeat simulation - if you intend to use this function, it works as a 'naive' double machine learning.
 #' @examples
@@ -150,7 +150,7 @@ for( i in 1:length(helper_res))
 
 heterogenous_effects <- suppressWarnings(Reduce( function(x1, x2){
   merge(x1, x2, all = TRUE,
-        by=c("observation_index"))}, heterogenous_effects, accumulate=F))
+        by=c("observation_index"))}, heterogenous_effects, accumulate = FALSE))
 observation_index <- heterogenous_effects[,"observation_index"]
 
 heterogenous_effect <- rowMeans(

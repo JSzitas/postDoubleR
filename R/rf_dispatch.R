@@ -31,13 +31,13 @@
 rf_helper <- function(X,
                       Y,
                       W,
-                      orthog.boost = F,
+                      orthog.boost = FALSE,
                       tree.n = 2000,
                       tune = T,
                       clustered = NULL
                          ){
 
-if(orthog.boost == F){
+if(orthog.boost == FALSE){
   # work without orthogonal boosting
   W_model <- grf::regression_forest(Y = W,
                                     X = X,

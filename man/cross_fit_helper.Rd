@@ -15,6 +15,9 @@ cross_fit_helper(model_W, model_Y, folds_to_fit, use)
 
 \item{use}{The method to use when calculating the out of fold prediction (propagates from method).}
 }
+\value{
+A list with four elements: The mean estimate of \eqn{\theta}, the standard error of the mean estimate, the associated  moment conditions, and the estimated heterogenous effects for the single batch of a single run of the simulation.
+}
 \description{
 Fits estimated models to out of fold samples
 }
