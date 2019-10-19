@@ -14,30 +14,30 @@ test_that("Glmnet dispatch works", {
    glmnet_lambda_W <- glmnet_helper( X,
                                      Y,
                                      W,
-                                     lambda.set.W = 1)
+                                     alpha.set.W = 1)
 
    glmnet_lambda_Y <- glmnet_helper( X,
                                      Y,
                                      W,
-                                     lambda.set.Y = 1)
+                                     alpha.set.Y = 1)
 
    glmnet_lambda_YW <- glmnet_helper( X,
                                       Y,
                                       W,
                                       Z.trans = TRUE,
-                                      lambda.set.Y = 1,
-                                      lambda.set.W = 1)
+                                      alpha.set.Y = 1,
+                                      alpha.set.W = 1)
 
 
 
 
-   expect_equal(class(glmnet_non_parall[[1]]), "cv.glmnet")
-   expect_equal(class(glmnet_non_parall[[2]]), "cv.glmnet")
+   expect_equal(class(glmnet_non_parall[[1]]), c("elnet","glmnet"))
+   expect_equal(class(glmnet_non_parall[[2]]), c("elnet","glmnet"))
 
    expect_equal(class(glmnet_lambda_W[[1]]), c("elnet", "glmnet"))
-   expect_equal(class(glmnet_lambda_W[[2]]), "cv.glmnet")
+   expect_equal(class(glmnet_lambda_W[[2]]), c("elnet","glmnet"))
 
-   expect_equal(class(glmnet_lambda_Y[[1]]), "cv.glmnet")
+   expect_equal(class(glmnet_lambda_Y[[1]]), c("elnet", "glmnet"))
    expect_equal(class(glmnet_lambda_Y[[2]]), c("elnet", "glmnet"))
 
    expect_equal(class(glmnet_lambda_YW[[1]]), c("elnet", "glmnet"))

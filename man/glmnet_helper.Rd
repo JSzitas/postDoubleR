@@ -5,8 +5,8 @@
 \title{Helper function(glmnet).}
 \usage{
 glmnet_helper(X, Y, W, Z.trans = TRUE, cv.steps = 100,
-  parallelize = FALSE, cores.to.use = NULL, lambda.set.Y = NULL,
-  lambda.set.W = NULL)
+  parallelize = FALSE, cores.to.use = NULL, alpha.set.Y = NULL,
+  alpha.set.W = NULL)
 }
 \arguments{
 \item{X}{A matrix of covariates (must be all numeric)}
@@ -23,9 +23,9 @@ glmnet_helper(X, Y, W, Z.trans = TRUE, cv.steps = 100,
 
 \item{cores.to.use}{The number of cores to use. If NULL (the default), uses the maximum number of cores detected by detectCores.}
 
-\item{lambda.set.Y}{Allows the user to specify lambda for the Y model, defaults to null.}
+\item{alpha.set.Y}{Allows the user to specify alpha for the Y model, defaults to 1 (the lasso penalty).}
 
-\item{lambda.set.W}{Allows the user to specify lambda for the W model, defaults to null.}
+\item{alpha.set.W}{Allows the user to specify alpha for the W model, defaults to 1 (the lasso penalty).}
 }
 \value{
 A list with two elements: The fitted W model and the fitted Y model.
@@ -44,7 +44,7 @@ This function does not support the full range of arguments to glmnet, intentiona
   W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
   Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
 
-glmnet_helper(X = X, Y = Y, W = W, lambda.set.W = 0.7, lambda.set.Y = 0.5)
+glmnet_helper(X = X, Y = Y, W = W, alpha.set.W = 0.7, alpha.set.Y = 0.5)
 
 
 

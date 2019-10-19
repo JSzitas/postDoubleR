@@ -7,13 +7,13 @@ Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
 test_that(" Double ML selection works with glmnet", {
 
   double_glmnet <- double_ML(X, Y, W, method = c("glmnet"),
-                              k.fld = 4,
-                              simulations = 50,
+                              k.fld = 2,
+                              simulations = 10,
                               show.progress = FALSE,
-                              lambda.set.Y = 1,
-                              lambda.set.W = 1,
+                              alpha.set.Y = 1,
+                              alpha.set.W = 1,
                               Z.trans = TRUE,
-                              parallelize = FALSE)
+                              parallelize = FALSE )
 
 
 

@@ -33,8 +33,8 @@ test_that("Post double selection works with glmnet in parallel(with specified co
 
   double_lasso <- double_ML(X, Y, W, method = c("glmnet"),
                                 k.fld = 4, simulations = 50,
-                                lambda.set.Y = 1,
-                                lambda.set.W = 1,
+                                alpha.set.Y = 1,
+                                alpha.set.W = 1,
                                 show.progress = FALSE,
                                 Z.trans = TRUE,
                                 parallelize = TRUE,

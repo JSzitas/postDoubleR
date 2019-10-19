@@ -41,17 +41,17 @@ Provides a convenient function to calculate the double ML estimated debiased tre
 Custom functions are currently implemented through a function called custom_generator. For these custom functions, refer to that function and usage examples.
 }
 \examples{
-
+\donttest{
   n = 2000; p = 10
   X = matrix(rnorm(n*p), n, p)
   W = rbinom(n, 1, 0.4 + 0.2 * (X[,1] > 0))
   Y = pmax(X[,1], 0) * W + X[,2] + pmin(X[,3], 0) + rnorm(n)
 
 double_ML(X, Y, W, method = "glmnet",
-              k.fld = 2, simulations = 5,
-              lambda.set.Y = 1,
-              lambda.set.W = 1,
-               Z.trans = F)
-
+              k.fld = 2, simulations = 10,
+              alpha.set.Y = 1,
+              alpha.set.W = 1,
+              Z.trans = F)
+}
 
 }
