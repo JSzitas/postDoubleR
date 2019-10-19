@@ -23,12 +23,11 @@ Roxygen: list(markdown = TRUE)
 URL: https://github.com/JSzitas/postDoubleR
 RoxygenNote: 6.1.1
 Imports: 
+    progress,
+    ggplot2,
+    doParallel,
     glmnet,
     grf,
     neuralnet,
-    progress,
-    ggplot2,
-    stats,
     parallel,
-    doParallel
-
+    stats

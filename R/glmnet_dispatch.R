@@ -58,19 +58,125 @@ else{
   cluster_used <- parallel::makeCluster(cores_used)
   doParallel::registerDoParallel(cluster_used)
 }
-    W_model <- glmnet::cv.glmnet( x = X,
-                                  y = W,
-                                  family = "gaussian",
-                                  standardize = Z.trans,
-                                  nfolds = cv.steps,
-                                  parallel = TRUE)$lambda.1se
+ if(!is.null(alpha.set.Y) && !is.null(alpha.set.W))
+    {
+      lambda_W <- glmnet::cv.glmnet( x = X,
+                                     y = W,
+                                     family = "gaussian",
+                                     standardize = Z.trans,
+                                     nfolds = cv.steps,
+                                     parallel = TRUE,
+                                     alpha = alpha.set.W)$lambda.1se
 
-    Y_model <- glmnet::cv.glmnet( x = X,
-                                  y = Y,
-                                  family = "gaussian",
-                                  standardize = Z.trans,
-                                  nfolds = cv.steps,
-                                  parallel = TRUE)$lambda.1se
+      lambda_Y <- glmnet::cv.glmnet( x = X,
+                                     y = Y,
+                                     family = "gaussian",
+                                     standardize = Z.trans,
+                                     nfolds = cv.steps,
+                                     parallel = TRUE,
+                                     alpha = alpha.set.Y)$lambda.1se
+
+      W_model <- glmnet::glmnet( x = X,
+                                 y = W,
+                                 family = "gaussian",
+                                 standardize = Z.trans,
+                                 lambda = lambda_W,
+                                 alpha = alpha.set.W)
+      Y_model <- glmnet::glmnet( x = X,
+                                 y = Y,
+                                 family = "gaussian",
+                                 standardize = Z.trans,
+                                 lambda = lambda_Y,
+                                 alpha = alpha.set.Y)
+
+    }
+    else if(!is.null(alpha.set.W) && is.null(alpha.set.Y))
+    {
+      lambda_W <- glmnet::cv.glmnet( x = X,
+                                     y = W,
+                                     family = "gaussian",
+                                     alpha = alpha.set.W,
+                                     nfolds = cv.steps,
+                                     standardize = Z.trans)$lambda.1se
+
+      lambda_Y <- glmnet::cv.glmnet( x = X,
+                                     y = Y,
+                                     family = "gaussian",
+                                     standardize = Z.trans,
+                                     parallel = TRUE,
+                                     nfolds = cv.steps)$lambda.1se
+      W_model <- glmnet::glmnet( x = X,
+                                 y = W,
+                                 family = "gaussian",
+                                 standardize = Z.trans,
+                                 lambda = lambda_W,
+                                 alpha = alpha.set.W)
+      Y_model <- glmnet::glmnet( x = X,
+                                 y = Y,
+                                 family = "gaussian",
+                                 standardize = Z.trans,
+                                 lambda = lambda_Y)
+
+    }
+    else if(is.null(alpha.set.W) && !is.null(alpha.set.Y))
+    {
+      lambda_W <- glmnet::cv.glmnet( x = X,
+                                     y = W,
+                                     family = "gaussian",
+                                     standardize = Z.trans,
+                                     parallel = TRUE,
+                                     nfolds = cv.steps)$lambda.1se
+
+
+      lambda_Y <- glmnet::cv.glmnet( x = X,
+                                     y = Y,
+                                     family = "gaussian",
+                                     standardize = Z.trans,
+                                     parallel = TRUE,
+                                     nfolds = cv.steps,
+                                     alpha = alpha.set.Y)$lambda.1se
+
+      W_model <- glmnet::glmnet( x = X,
+                                 y = W,
+                                 family = "gaussian",
+                                 standardize = Z.trans,
+                                 lambda = lambda_W)
+      Y_model <- glmnet::glmnet( x = X,
+                                 y = Y,
+                                 family = "gaussian",
+                                 standardize = Z.trans,
+                                 lambda = lambda_Y,
+                                 alpha = alpha.set.Y)
+    }
+    else
+    {
+      lambda_W <- glmnet::cv.glmnet( x = X,
+                                     y = W,
+                                     family = "gaussian",
+                                     standardize = Z.trans,
+                                     parallel = TRUE,
+                                     nfolds = cv.steps)$lambda.1se
+
+
+      lambda_Y <- glmnet::cv.glmnet( x = X,
+                                     y = Y,
+                                     family = "gaussian",
+                                     standardize = Z.trans,
+                                     parallel = TRUE,
+                                     nfolds = cv.steps)$lambda.1se
+
+      W_model <- glmnet::glmnet( x = X,
+                                 y = W,
+                                 family = "gaussian",
+                                 standardize = Z.trans,
+                                 lambda = lambda_W)
+      Y_model <- glmnet::glmnet( x = X,
+                                 y = Y,
+                                 family = "gaussian",
+                                 standardize = Z.trans,
+                                 lambda = lambda_Y)
+
+    }
 
   parallel::stopCluster(cluster_used)
 }
@@ -109,11 +215,12 @@ else
     }
     else if(!is.null(alpha.set.W) && is.null(alpha.set.Y))
     {
-      lambda_W <- glmnet::glmnet( x = X,
-                                  y = W,
-                                  family = "gaussian",
-                                  alpha = alpha.set.W,
-                                  standardize = Z.trans)$lambda.1se
+      lambda_W <- glmnet::cv.glmnet( x = X,
+                                     y = W,
+                                     family = "gaussian",
+                                     alpha = alpha.set.W,
+                                     nfolds = cv.steps,
+                                     standardize = Z.trans)$lambda.1se
 
       lambda_Y <- glmnet::cv.glmnet( x = X,
                                      y = Y,
@@ -142,11 +249,12 @@ else
                                      nfolds = cv.steps)$lambda.1se
 
 
-      lambda_Y <- glmnet::glmnet( x = X,
-                                  y = Y,
-                                  family = "gaussian",
-                                  standardize = Z.trans,
-                                  alpha = alpha.set.Y)$lambda.1se
+      lambda_Y <- glmnet::cv.glmnet( x = X,
+                                     y = Y,
+                                     family = "gaussian",
+                                     standardize = Z.trans,
+                                     alpha = alpha.set.Y,
+                                     nfolds = cv.steps)$lambda.1se
 
       W_model <- glmnet::glmnet( x = X,
                                  y = W,

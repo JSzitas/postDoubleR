@@ -10,9 +10,9 @@ test_that("Post double selection works with glmnet in parallel", {
   skip_on_travis()
 
   double_lasso <- double_ML(X, Y, W, method = c("glmnet"),
-                                k.fld = 4, simulations = 50,
-                                lambda.set.Y = 1,
-                                lambda.set.W = 1,
+                                k.fld = 2, simulations = 10,
+                                alpha.set.Y = 1,
+                                alpha.set.W = 1,
                                 show.progress = FALSE,
                                 Z.trans = TRUE,
                                 parallelize = TRUE )
@@ -26,13 +26,13 @@ test_that("Post double selection works with glmnet in parallel", {
 })
 
 
-test_that("Post double selection works with glmnet in parallel(with specified core.n", {
+test_that("Post double selection works with glmnet in parallel(with specified core.n)", {
 
   skip_on_cran()
   skip_on_travis()
 
   double_lasso <- double_ML(X, Y, W, method = c("glmnet"),
-                                k.fld = 4, simulations = 50,
+                                k.fld = 2, simulations = 10,
                                 alpha.set.Y = 1,
                                 alpha.set.W = 1,
                                 show.progress = FALSE,
@@ -48,13 +48,13 @@ test_that("Post double selection works with glmnet in parallel(with specified co
   expect_true(is.list(double_lasso))
 })
 
-test_that("Post double selection works with glmnet in parallel(with specified core.n", {
+test_that("Post double selection works with glmnet in parallel(with specified core.n)", {
 
   skip_on_cran()
   skip_on_travis()
 
   double_lasso <- double_ML(X, Y, W, method = c("glmnet"),
-                                k.fld = 4, simulations = 10,
+                                k.fld = 2, simulations = 10,
                                 cv.steps = 10,
                                 show.progress = FALSE,
                                 Z.trans = TRUE,
